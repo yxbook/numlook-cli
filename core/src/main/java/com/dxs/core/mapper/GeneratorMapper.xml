@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dxs.core.dao.GeneratorMapper">
+  <resultMap id="BaseResultMap" type="com.dxs.core.domain.Generator">
+    <id column="pk_id" jdbcType="INTEGER" property="pkId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sys_generator
+    where pk_id = #{pkId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dxs.core.domain.Generator">
+    insert into sys_generator (pk_id)
+    values (#{pkId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dxs.core.domain.Generator">
+    insert into sys_generator
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        pk_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="pkId != null">
+        #{pkId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
